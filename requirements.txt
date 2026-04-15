@@ -1,13 +1,4 @@
-langchain
-langchain-community
-langchain-text-splitters
-chromadb
-sentence-transformers
-ollama
-python-dotenv
-fastapi
-uvicorn
-pypdf
-docx2txt
 Flask
 flask-cors
+gunicorn
+python-dotenv
