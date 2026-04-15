@@ -8,7 +8,7 @@ app = FastAPI()
 # Ensure docs folder exists
 os.makedirs("docs", exist_ok=True)
 
-# ✅ STEP 1: Ask question (uses RAG + Ollama inside Rag.py)
+# STEP 1: Ask question (uses RAG + Ollama inside Rag.py)
 @app.get("/ask")
 def ask(question: str):
     try:
@@ -26,7 +26,7 @@ def ask(question: str):
         }
 
 
-# ✅ STEP 2: Upload document
+# STEP 2: Upload document
 @app.post("/upload")
 def upload_file(file: UploadFile = File(...)):
     try:
@@ -50,7 +50,7 @@ def upload_file(file: UploadFile = File(...)):
         }
 
 
-# ✅ STEP 3: Health check (optional but useful)
+# STEP 3: Health check (optional but useful)
 @app.get("/")
 def home():
-    return {"message": "RAG API is running 🚀"}
+    return {"message": "RAG API is running "}

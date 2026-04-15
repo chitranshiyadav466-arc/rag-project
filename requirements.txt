@@ -9,3 +9,5 @@ fastapi
 uvicorn
 pypdf
 docx2txt
+Flask
+flask-cors
