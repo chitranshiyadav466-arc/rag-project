@@ -8,22 +8,29 @@ MY_SECRET_KEY = "rag12345"
 
 @app.route("/")
 def home():
-    return "API is running "
+    return "API is running"
 
 @app.route("/api/chat", methods=["POST"])
 def chat():
     data = request.json
 
-    # Check API key
+    # Flexible API key check
     api_key = request.headers.get("x-api-key")
-    if api_key != MY_SECRET_KEY:
+    if api_key and api_key != MY_SECRET_KEY:
         return jsonify({"error": "Unauthorized"}), 401
 
-    # Validate input
-    if not data or "message" not in data:
-        return jsonify({"error": "Message is required"}), 400
+    if not data:
+        return jsonify({"error": "No data received"}), 400
 
-    user_msg = data.get("message")
+    # Handle BOTH formats
+    if "message" in data:
+        user_msg = data["message"]
+
+    elif "messages" in data:
+        user_msg = data["messages"][-1]["content"]
+
+    else:
+        return jsonify({"error": "Invalid request format"}), 400
 
     return jsonify({
         "reply": f"You said: {user_msg}"
